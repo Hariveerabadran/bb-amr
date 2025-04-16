@@ -40,6 +40,9 @@ class ROS2Service(Node):
                 self.get_logger().info("Canceled before reaching kitchen. Returning home.")
                 self.navigator.cancelTask()
                 self.move_pos('Home', 'H')
+                self.table_list.clear()
+                self.table_list={'H':(-1.5, -4.3, *quaternion_from_euler(0,0,self.yaw[0],'ryxz')[2:4]), 
+                         'K':(-6.0, -3.5, *quaternion_from_euler(0,0,self.yaw[1],'ryxz')[2:4])}
 
             elif self.current_state == 'to_table':
                 self.get_logger().info(f"Table{request.tables} canceled ")
