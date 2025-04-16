@@ -73,7 +73,7 @@ The robot follows these logic flows:
 
 ## UI Design (PyQt5)
 
-![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/1.png)
+  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/1.png)
 
 
 **GUI elements include:**
@@ -88,8 +88,11 @@ Each button triggers a ROS 2 service request, handled by the backend logic.
 ## Simulation Output
 
 - Gazebo Simulation
+  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/2.png)
 - RViz Display
+  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/3.png)
 - Nav2 Costmap
+  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/4.png)
 
 ## Conclusion
 
