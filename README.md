@@ -50,7 +50,7 @@ The robot follows these logic flows:
       ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/cmd_vel_key
   ```
   
-  ***Note: Twist_mux is used here priority control keyboard (/cmd_vel_key) over nav2 (/cmd_vel) out:= (/bb_botamr/cmd_vel )***
+  ***Note: Twist_mux is used for here priority control keyboard (/cmd_vel_key) over nav2 (/cmd_vel) out:= (/bb_botamr/cmd_vel )***
 
   ### Remapped Topics:
     > amr: /cmd_vel → /bb_botamr/cmd_vel  
