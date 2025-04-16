@@ -73,7 +73,7 @@ The robot follows these logic flows:
 
 ## UI Design (PyQt5)
 
-![Alt text]([https://raw.githubusercontent.com/Hariveerabadran/bb-amr/image/1.png](https://github.com/Hariveerabadran/bb-amr/blob/main/image/1.png))
+![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/1.png)
 
 
 **GUI elements include:**
