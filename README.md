@@ -106,7 +106,7 @@ This project showcases a ROS 2-based solution for mobile service robots, integra
 - Custom service interfaces
 - UI-based client control
 - Nav2 autonomous navigation
-- Real-world inspired logic handling
+- Real-world logic handling
 
 ## Dependencies
 
