@@ -34,24 +34,28 @@ class ROS2Service(Node):
 
         if request.cancel:
             self.get_logger().info(f"Cancel received for table {request.tables}")
-            self.get_logger().info("Navigation task canceled.")
-
+            msg = None
             if self.current_state == 'to_kitchen':
-                self.get_logger().info("Canceled before reaching kitchen. Returning home.")
-                self.navigator.cancelTask()
-                self.move_pos('Home', 'H')
-                self.table_list.clear()
-                self.table_list={'H':(-1.5, -4.3, *quaternion_from_euler(0,0,self.yaw[0],'ryxz')[2:4]), 
-                         'K':(-6.0, -3.5, *quaternion_from_euler(0,0,self.yaw[1],'ryxz')[2:4])}
+                if len(self.table_list) > 3:
+                    self.get_logger().info(f"Table{request.tables} canceled ")
+                    self.skip_table.append(request.tables)
+                    msg = f"Table{request.tables} canceled "
+                else:
+                    self.get_logger().info("Canceled before reaching kitchen. Returning home.")
+                    self.navigator.cancelTask()
+
+                    msg = "Canceled before reaching kitchen. Returning home."
 
             elif self.current_state == 'to_table':
                 self.get_logger().info(f"Table{request.tables} canceled ")
                 self.skip_table.append(request.tables)
+                msg = f"Table{request.tables} canceled "
 
             else:
                 self.get_logger().info("Robot is idle or returning. No action needed.")
+                msg = "Robot is idle or returning. No action needed."
 
-            response.msg = f"Canceled order for table {request.tables}"
+            response.msg = msg
 
         elif request.tables and request.order:            
             if request.tables == '1': self.table_list[request.tables] = (3.0, 0.4, *quaternion_from_euler(0,0,self.yaw[2],'ryxz')[2:4])
@@ -77,11 +81,12 @@ class ROS2Service(Node):
         while rclpy.ok():
             key = list(self.table_list.keys())
             if len(key) > 2:
-                self.move_pos('Kitchen', 'K')
-                if not self.wait_for_confirmation('Kc', timeout=10):
-                    self.get_logger().info("Kitchen did not confirm. Returning home.")
-                    self.move_pos('Home','H')
-                    self.table_list.pop(key[2])
+                if self.move_pos('Kitchen', 'K'):
+                    if not self.wait_for_confirmation('Kc', timeout=10):
+                        self.get_logger().info("Kitchen did not confirm. Returning home.")
+                        self.move_pos('Home','H')
+                        for i in range(2, len(self.table_list.keys())):
+                            self.table_list.pop(key[i])
 
             while len(self.table_list.keys()) > 2:
                 self.skip = False
@@ -94,15 +99,20 @@ class ROS2Service(Node):
                     self.skip = True
                     self.get_logger().info(f"Skipping table {current_table}")
                     continue
-
-                self.move_pos(f'Table {current_table}', current_table)
-                if not self.wait_for_confirmation(f'T{current_table}', timeout=10):
-                    self.get_logger().info(f"No confirmation at table {current_table}. Returning to kitchen then home.")
-                    self.skip = False
-                    self.move_pos('Kitchen', 'K')
-                    time.sleep(1)
-                    self.move_pos('Home', 'H')
-
+                    
+                if self.move_pos(f'Table {current_table}', current_table):
+                    if not self.wait_for_confirmation(f'T{current_table}', timeout=10):
+                        self.skip = False
+                        if len(self.table_list.keys()) == 3:
+                            self.get_logger().info(f"No confirmation at table {current_table}. Returning to kitchen then home.")
+                            self.move_pos('Kitchen', 'K')
+                            time.sleep(1)
+                            self.move_pos('Home', 'H')
+                        else:
+                            
+                            key3 = list(self.table_list.keys())[3]
+                            self.get_logger().info(f"No confirmation at table {current_table}. Naviagate to table{key3}")
+                    
                 self.table_list.pop(current_table)
 
             if self.skip:
@@ -121,9 +131,16 @@ class ROS2Service(Node):
     
         goal_pose = self._create_pose(*self.table_list.get(pos))
         self.navigator.goToPose(goal_pose)
+
+        feedback = False
         while not self.navigator.isTaskComplete():
             feedback = self.navigator.getFeedback()
             self.get_logger().info(f"Heading to {pos_name}...")
+            if pos in self.skip_table:
+                self.navigator.cancelTask()
+                self.skip_table.remove(pos)
+        
+        return feedback
 
     def wait_for_confirmation(self, expected_mode, timeout=10):
         start_time = time.time()
