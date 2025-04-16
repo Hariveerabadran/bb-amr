@@ -57,7 +57,7 @@ The robot follows these logic flows:
     > lidar: /scan → /bb_botamr/scan
 
 
-- pkg **bb_ui**  
+- pkg: **bb_ui**  
   PyQt5-based GUI client to interact with the robot using ROS 2 services and Nav2:
 
   ### Start service node:
