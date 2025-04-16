@@ -1,2 +1,107 @@
-# bb-amr
-AMR bor for cafe ording system
+# BB-Bot: Autonomous Café Assistant
+
+An autonomous butler robot designed for the **French Door Café**, capable of efficiently handling and delivering food orders using **ROS 2**, **Gazebo**, and **Nav2**. The robot simulates a café environment where it reduces human workload and improves service speed during busy hours.
+
+## Objective
+
+To create a mobile robot system that autonomously:
+- Accepts and manages customer orders
+- Navigates between kitchen and tables
+- Handles multiple real-world scenarios like order cancellation, no responses, and chaining deliveries
+
+## Behavior Logic
+
+The robot follows these logic flows:
+
+- **Normal Order:** Home → Kitchen → Table → Kitchen → Home
+- **Order Cancelled (before pickup):** Home → Kitchen (skip table) → Home
+- **Order Cancelled (on delivery):** Home → Kitchen → Table (cancelled) → Kitchen → Home
+- **No Response at Table:** Skips to next delivery
+- **Multiple Orders:** Chains deliveries to multiple tables
+
+## Project Structure
+
+### ROS 2 Workspace: `bb-amr_ws`
+
+- **cafe_interfaces**  
+  Custom `.srv` file for service-client communication:
+  ```
+  string tables
+  bool order
+  bool cancel
+  string mode
+  ---
+  string msg
+  ```
+
+- **gazebo_sim**  
+    Gazebo & RViz simulation environment:
+
+  ### Launch simulation: 
+  ```sh
+      ros2 launch gazebo_sim gazebo.launch.py
+  ```
+  ### Launch Nav2 in RViz:  
+  ```sh
+      ros2 launch gazebo_sim nav2.launch.py
+  ```
+  ### Teleop control:  
+  ```sh
+      ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/cmd_vel_key
+  ```
+
+  ### Remapped Topics:
+    > /cmd_vel → /bb_botamr/cmd_vel  
+    > Lidar /scan → /bb_botamr/scan
+
+
+- **bb_ui**  
+  PyQt5-based GUI client to interact with the robot using ROS 2 services and Nav2:
+
+  ### Start service node:
+  ```sh  
+      ros2 run bb_ui cafe_service
+  ```
+  ### Start UI client:  
+  ```sh
+      ros2 run bb_ui ui
+  ```
+  ###  Shortcut alias (add to `.bashrc`): 
+  ```sh
+      alias bb_ui='python3 /src/bb_ui/bb_ui/ui_main.py'
+  ```
+
+## UI Design (PyQt5)
+
+![Alt text](https://raw.githubusercontent.com/Hariveerabadran/bb-amr/image/1.png)
+
+
+**GUI elements include:**
+- **Order** — Place an order
+- **Cancel** — Cancel an order
+- **Received** — Confirm order received
+- **Order Taken** — Confirm kitchen order
+- **Clear** — Clear kitchen log
+
+Each button triggers a ROS 2 service request, handled by the backend logic.
+
+## Simulation Output
+
+- Gazebo Simulation
+- RViz Display
+- Nav2 Costmap
+
+## Conclusion
+
+This project showcases a ROS 2-based solution for mobile service robots, integrating:
+- Custom service interfaces
+- UI-based client control
+- Nav2 autonomous navigation
+- Real-world inspired logic handling
+
+## Dependencies
+
+- ROS 2 (tested with Humble)
+- Gazebo
+- Nav2 stack
+- PyQt5
