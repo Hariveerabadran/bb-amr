@@ -87,7 +87,6 @@ The robot follows these logic flows:
 Each button triggers a ROS 2 service request, handled by the backend logic.
 
 ## Simulation Output
-
 - ### Gazebo Simulation
   ![3](https://github.com/user-attachments/assets/6bfedb35-1e40-4519-9898-0795da80771c)
 
@@ -98,9 +97,8 @@ Each button triggers a ROS 2 service request, handled by the backend logic.
   
 - ### Nav2 Costmap
   ![2](https://github.com/user-attachments/assets/2b8a36fc-d3b5-405c-9ad7-a10fc2e0124b)
-
-  
-- ### Video: [Watch Video](https://drive.google.com/file/d/1WwZBbk_NA83ExoaZOY6AEDBvepFqq9jq/view?usp=sharing)
+ 
+- ### link : Video: [Watch Video](https://drive.google.com/file/d/1WwZBbk_NA83ExoaZOY6AEDBvepFqq9jq/view?usp=sharing)
 
 ## Conclusion
 
