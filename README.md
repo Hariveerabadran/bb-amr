@@ -87,13 +87,13 @@ Each button triggers a ROS 2 service request, handled by the backend logic.
 
 ## Simulation Output
 
-- Gazebo Simulation
+- ### Gazebo Simulation
   ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/3.png)
   
-- RViz Display
+- ### RViz Display
   ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/4.png)
   
-- Nav2 Costmap
+- ### Nav2 Costmap
   ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/2.png)
 
 ## Conclusion
