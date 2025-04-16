@@ -96,8 +96,7 @@ Each button triggers a ROS 2 service request, handled by the backend logic.
 - ### Nav2 Costmap
   ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/2.png)
   
-- ### Video:
-  [Watch Demo Video](https://drive.google.com/file/d/1WwZBbk_NA83ExoaZOY6AEDBvepFqq9jq/view?usp=sharing)
+- ### Video: [Watch Video](https://drive.google.com/file/d/1WwZBbk_NA83ExoaZOY6AEDBvepFqq9jq/view?usp=sharing)
 
 ## Conclusion
 
