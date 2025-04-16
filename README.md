@@ -23,7 +23,7 @@ The robot follows these logic flows:
 
 ### ROS 2 Workspace: `bb-amr_ws`
 
-- **cafe_interfaces**  
+- pkg: **cafe_interfaces**  
   Custom `.srv` file for service-client communication:
   ```
   string tables
@@ -34,7 +34,7 @@ The robot follows these logic flows:
   string msg
   ```
 
-- **gazebo_sim**  
+- pkg: **gazebo_sim**  
     Gazebo & RViz simulation environment:
 
   ### Launch simulation: 
@@ -57,7 +57,7 @@ The robot follows these logic flows:
     > lidar: /scan → /bb_botamr/scan
 
 
-- **bb_ui**  
+- pkg **bb_ui**  
   PyQt5-based GUI client to interact with the robot using ROS 2 services and Nav2:
 
   ### Start service node:
@@ -69,7 +69,6 @@ The robot follows these logic flows:
       ros2 run bb_ui ui
   ```
   ###  Shortcut alias (add to `.bashrc`):
-  ***Easy to run ui***
   ```sh
       alias bb_ui='python3 /src/bb_ui/bb_ui/ui_main.py'
   ```
