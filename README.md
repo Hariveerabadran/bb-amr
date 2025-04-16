@@ -75,8 +75,7 @@ The robot follows these logic flows:
   
 ## UI Design (PyQt5)
 
-  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/1.png)
-
+  ![1](https://github.com/user-attachments/assets/c12364b4-ca07-4daa-bf6c-419c0f6a2537)
 
 **GUI elements include:**
 - **Order** — Place an order
@@ -90,13 +89,16 @@ Each button triggers a ROS 2 service request, handled by the backend logic.
 ## Simulation Output
 
 - ### Gazebo Simulation
-  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/3.png)
+  ![3](https://github.com/user-attachments/assets/6bfedb35-1e40-4519-9898-0795da80771c)
+
   
 - ### RViz Display
-  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/4.png)
+  ![4](https://github.com/user-attachments/assets/f92714b1-65d8-4472-b375-72067bb5adf6)
+
   
 - ### Nav2 Costmap
-  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/2.png)
+  ![2](https://github.com/user-attachments/assets/2b8a36fc-d3b5-405c-9ad7-a10fc2e0124b)
+
   
 - ### Video: [Watch Video](https://drive.google.com/file/d/1WwZBbk_NA83ExoaZOY6AEDBvepFqq9jq/view?usp=sharing)
 
