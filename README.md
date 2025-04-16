@@ -116,7 +116,3 @@ This project showcases a ROS 2-based solution for mobile service robots, integra
 - Nav2 stack
 - twist mux
 - PyQt5
-### NOTE: project has to work on:
-- while navigating form home to kitchen cancel will cancle all orders.
-- Not confrim at table lead navigate to kitchen and home.
-- Cannot canel while navigating to that positon.
