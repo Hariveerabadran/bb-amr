@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<robot name="bb_botamr" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find gazebo_sim)/urdf/materials.xacro" />
+<xacro:include filename="$(find gazebo_sim)/urdf/bb_botamr.trans" />
+
+<link name="base_footprint"></link>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.006638255987375507 2.6688314987761043e-16 0.041973706137380586" rpy="0 0 0"/>
+    <mass value="50"/>
+    <inertia 
+      ixx="2.0" ixy="0.0" ixz="0.0"
+      iyy="3.27" iyz="0.0"
+      izz="3.8958"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="body"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="-1.4251171062635156e-08 -0.029602926312925604 -1.6617087678083564e-08" rpy="0 0 0"/>
+    <mass value="10"/>
+    <inertia 
+      ixx="0.0184" ixy="0.0" ixz="0.0"
+      iyy="0.0184" iyz="0.0"
+      izz="0.028125"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.1 0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="wheel"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.1 0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-1.4251171047652784e-08 0.02960292631292591 1.661708761563352e-08" rpy="0 0 0"/>
+    <mass value="10"/>
+    <inertia 
+      ixx="0.0184" ixy="0.0" ixz="0.0"
+      iyy="0.0184" iyz="0.0"
+      izz="0.028125"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 -0.1 0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="wheel"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 -0.1 0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.125"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <visual>
+    <origin xyz="-0.39 -0.0 -0.02" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="lidar"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.39 -0.0 -0.02" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="stand_1">
+  <visual>
+    <origin xyz="0.25 -0.0 -0.093" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/stand_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="body"/>
+  </visual>
+  <collision>
+    <origin xyz="0.25 -0.0 -0.093" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find gazebo_sim)/meshes/stand_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="base_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+</joint>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="0.0 -0.1 -0.04" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="0.0 0.1 -0.04" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="lidar" type="fixed">
+  <origin xyz="0.39 0.0 0.02" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+<joint name="stand" type="fixed">
+  <origin xyz="-0.25 0.0 0.093" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="stand_1"/>
+</joint>
+
+</robot>

@@ -1,0 +1,6 @@
+string tables
+bool order
+bool cancel
+string mode
+---
+string msg

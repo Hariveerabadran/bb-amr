@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<robot name="bb_botamr" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:include filename="$(find gazebo_sim)/urdf/bb_botamr.gazebo" />
+<xacro:include filename="$(find gazebo_sim)/urdf/bb_botamr_core.xacro" />
+
+</robot>
