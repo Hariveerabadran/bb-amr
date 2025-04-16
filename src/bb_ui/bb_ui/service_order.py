@@ -139,7 +139,6 @@ class ROS2Service(Node):
             if pos in self.skip_table:
                 self.navigator.cancelTask()
                 self.skip_table.remove(pos)
-        
         return feedback
 
     def wait_for_confirmation(self, expected_mode, timeout=10):
@@ -176,7 +175,6 @@ def main(args=None):
     finally:
         service_node.destroy_node()
         rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()
