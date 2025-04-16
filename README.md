@@ -91,7 +91,7 @@ Each button triggers a ROS 2 service request, handled by the backend logic.
   ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/3.png)
   
 - RViz Display
-  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/1.png)
+  ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/4.png)
   
 - Nav2 Costmap
   ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/2.png)
