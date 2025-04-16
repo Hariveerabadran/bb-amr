@@ -117,7 +117,7 @@ This project showcases a ROS 2-based solution for mobile service robots, integra
   ```
 - Slam toolbox
   ```sh
-  sudo apt installros-humble-slam-toolbox
+  sudo apt install ros-humble-slam-toolbox
   ```
 - Nav2 stack
   ```sh
