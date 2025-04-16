@@ -112,11 +112,11 @@ This project showcases a ROS 2-based solution for mobile service robots, integra
 
 - ROS 2 (tested with Humble)
 - Gazebo (outdated !)
-- ```sh
+  ```sh
   sudo apt install ros-humble-gazebo-ros-pkgs
   ```
 - Slam toolbox
- ```sh
+  ```sh
   sudo apt installros-humble-slam-toolbox
   ```
 - Nav2 stack
