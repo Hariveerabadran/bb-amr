@@ -119,8 +119,3 @@ This project showcases a ROS 2-based solution for mobile service robots, integra
 ### NOTE: project has to work on:
 - while navigating form home to kitchen cancel will cancle all orders.
 - Not confrim at table lead navigate to kitchen and home.
-
-  
-
-  ![Uploading Predator_Wallpaper_01_3840x2400.jpg…]()
-
