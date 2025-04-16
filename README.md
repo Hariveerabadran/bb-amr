@@ -97,7 +97,7 @@ Each button triggers a ROS 2 service request, handled by the backend logic.
   ![Alt text](https://github.com/Hariveerabadran/bb-amr/blob/main/image/2.png)
   
 - ### Video:
-  ![Alttext}(https://drive.google.com/file/d/1WwZBbk_NA83ExoaZOY6AEDBvepFqq9jq/view?usp=sharing)
+  [Alttext}(https://drive.google.com/file/d/1WwZBbk_NA83ExoaZOY6AEDBvepFqq9jq/view?usp=sharing)
 
 ## Conclusion
 
