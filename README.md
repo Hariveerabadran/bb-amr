@@ -111,8 +111,23 @@ This project showcases a ROS 2-based solution for mobile service robots, integra
 ## Dependencies
 
 - ROS 2 (tested with Humble)
-- Gazebo
+- Gazebo (outdated !)
+- ```sh
+  sudo apt install ros-humble-gazebo-ros-pkgs
+  ```
 - Slam toolbox
+ ```sh
+  sudo apt installros-humble-slam-toolbox
+  ```
 - Nav2 stack
+  ```sh
+  sudo apt install ros-humble-nav2-bringup
+  ```
 - twist mux
+  ```sh
+  sudo apt install ros-humble-twist-mux
+  ```
 - PyQt5
+  ```sh
+  pip install pyqt5
+  ```
