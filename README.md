@@ -66,7 +66,8 @@ The robot follows these logic flows:
   ```sh
       ros2 run bb_ui ui
   ```
-  ###  Shortcut alias (add to `.bashrc`): 
+  ###  Shortcut alias (add to `.bashrc`):
+  ***Easy to run ui***
   ```sh
       alias bb_ui='python3 /src/bb_ui/bb_ui/ui_main.py'
   ```
