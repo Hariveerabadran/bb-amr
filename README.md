@@ -51,8 +51,8 @@ The robot follows these logic flows:
   ```
 
   ### Remapped Topics:
-    > /cmd_vel → /bb_botamr/cmd_vel  
-    > Lidar /scan → /bb_botamr/scan
+    > amr: /cmd_vel → /bb_botamr/cmd_vel  
+    > lidar: /scan → /bb_botamr/scan
 
 
 - **bb_ui**  
