@@ -57,14 +57,18 @@ class ROS2Service(Node):
 
             response.msg = msg
 
-        elif request.tables and request.order:            
-            if request.tables == '1': self.table_list[request.tables] = (3.0, 0.4, *quaternion_from_euler(0,0,self.yaw[2],'ryxz')[2:4])
-            elif request.tables == '2': self.table_list[request.tables] = (8.5, 0.4, *quaternion_from_euler(0,0,self.yaw[2],'ryxz')[2:4])
-            elif request.tables == '3': self.table_list[request.tables] = (4.0, -3.0, *quaternion_from_euler(0,0,self.yaw[3],'ryxz')[2:4])
+        elif request.tables and request.order:
+            if not self.current_state == 'to_table':            
+                if request.tables == '1': self.table_list[request.tables] = (3.0, 0.4, *quaternion_from_euler(0,0,self.yaw[2],'ryxz')[2:4])
+                elif request.tables == '2': self.table_list[request.tables] = (8.5, 0.4, *quaternion_from_euler(0,0,self.yaw[2],'ryxz')[2:4])
+                elif request.tables == '3': self.table_list[request.tables] = (4.0, -3.0, *quaternion_from_euler(0,0,self.yaw[3],'ryxz')[2:4])
 
-            self.get_logger().info(f"Order received for table {request.tables}")
-            response.msg = f"Order registered for table {request.tables}"
-
+                self.get_logger().info(f"Order received for table {request.tables}")
+                response.msg = f"Order registered for table {request.tables}"
+            else:
+                self.get_logger().info(f"BB-bot is busy... Table{request.tables} request later")
+                response.msg = f"BB-bot is busy... Table{request.tables} request later"
+    
         elif request.mode == 'Kc':
             self.get_logger().info("Kitchen confirmation received.")
             response.msg = "Kitchen confirmed"
@@ -118,7 +122,7 @@ class ROS2Service(Node):
             if self.skip:
                 self.move_pos('Kitchen', 'K')
             time.sleep(1)
-            if self.current_state != 'idle' and self.current_state != 'returning':
+            if self.current_state != 'idle' and self.current_state != 'returning' and len(self.on_table) == 0:
                 self.move_pos('Home', 'H')
 
     def move_pos(self,pos_name:str, pos:str):
@@ -139,6 +143,7 @@ class ROS2Service(Node):
             if pos in self.skip_table:
                 self.navigator.cancelTask()
                 self.skip_table.remove(pos)
+        
         return feedback
 
     def wait_for_confirmation(self, expected_mode, timeout=10):
@@ -175,6 +180,7 @@ def main(args=None):
     finally:
         service_node.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()
