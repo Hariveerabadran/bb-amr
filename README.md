@@ -39,15 +39,15 @@ The robot follows these logic flows:
 
   ### Launch simulation: 
   ```sh
-      ros2 launch gazebo_sim gazebo.launch.py
+  ros2 launch gazebo_sim gazebo.launch.py
   ```
   ### Launch Nav2 in RViz:  
   ```sh
-      ros2 launch gazebo_sim nav2.launch.py
+  ros2 launch gazebo_sim nav2.launch.py
   ```
   ### Teleop control:  
   ```sh
-      ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/cmd_vel_key
+  ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/cmd_vel_key
   ```
   
   ***Note: Twist_mux is used for here priority control keyboard (/cmd_vel_key) over nav2 (/cmd_vel) out:= (/bb_botamr/cmd_vel )***
@@ -62,15 +62,15 @@ The robot follows these logic flows:
 
   ### Start service node:
   ```sh  
-      ros2 run bb_ui cafe_service
+  ros2 run bb_ui cafe_service
   ```
   ### Start UI client:  
   ```sh
-      ros2 run bb_ui ui
+  ros2 run bb_ui ui
   ```
   ###  Shortcut alias (add to `.bashrc`):
   ```sh
-      alias bb_ui='python3 /src/bb_ui/bb_ui/ui_main.py'
+  alias bb_ui='python3 /src/bb_ui/bb_ui/ui_main.py'
   ```
   
 ## UI Design (PyQt5)
